@@ -39,7 +39,7 @@ const PurchaseSection = ({ contract, id }: any) => {
     <div>
       {nft.data && (
         <>
-          <p>Not for sale.</p>
+          <p>Already sold on primary.</p>
           <p>
             Owned by {nft.data.nft?.owner}{" "}
             {account === nft.data.nft?.owner ? "(you)" : ""}
@@ -92,9 +92,8 @@ export const ShowNFT = ({ id, width, height, nft, contract }: any) => (
   <div>
     <div>
       <Image
-        width={1920}
-        height={1080}
-        layout="intrinsic"
+        width={width}
+        height={height}
         // className={
         //   css`
         //     objectfit: contain;
