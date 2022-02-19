@@ -1,17 +1,17 @@
-import { ListNFTs } from "../../../components/ListNFTs";
-import Markdown from "../../../components/Markdown";
+import Head from "../../../components/head";
 import { ShowNFT } from "../../../components/ShowNFT";
 import data from "../../../data/drawing-machine.json";
-import drawingMachine from "../../../data/drawing-machine.md";
 
 const DrawingMachinePiece = ({ id }: any) => {
+  const nft = data[parseInt(id)];
   return (
     <div style={{ padding: "20px" }}>
+      <Head title={nft.name} ogImage={nft.image} />
       {/* <Markdown markdown={drawingMachine} /> */}
       <ShowNFT
         contract={process.env.NEXT_PUBLIC_DRAWING_MACHINE_CONTRACT}
         id={id}
-        nft={data[parseInt(id)]}
+        nft={nft}
         width={1920}
         height={1080}
       />

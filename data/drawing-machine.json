@@ -72,14 +72,6 @@
     "image": "ipfs://bafybeicqempztd63s7k5afnbsutyimrbgre7btfpmak35hwbciwypt3vym/09_2022_01_12_20_03_26.png"
   },
   {
-    "name": "drawing machine x4 #100",
-    "description": "The code behind the “drawing machine” series dates back to 2004, and was originally developed to create design elements for the cover of Portuguese musician Vitor Joaquim’s album “A Rose is a Rose”. For “drawing machine x4” LIA has further iterated the code, modifying it to such an extent that the visual outputs that it now produces bear scarce resemblance to those from the original version. The underlying mechanism, however, remains the same: elements are pulled around the canvas by invisible leads, tracing complex patterns that form in the interaction between each element’s internal and external motion.",
-    "properties": {
-      "Artist": "Lia"
-    },
-    "image": "ipfs://bafybeigvb3xizwveew5b6rotqoh2x4ywb2crs7joezfhsos45jjtfkkhmm/100_2022_01_14_16_28_55.png"
-  },
-  {
     "name": "drawing machine x4 #10",
     "description": "The code behind the “drawing machine” series dates back to 2004, and was originally developed to create design elements for the cover of Portuguese musician Vitor Joaquim’s album “A Rose is a Rose”. For “drawing machine x4” LIA has further iterated the code, modifying it to such an extent that the visual outputs that it now produces bear scarce resemblance to those from the original version. The underlying mechanism, however, remains the same: elements are pulled around the canvas by invisible leads, tracing complex patterns that form in the interaction between each element’s internal and external motion.",
     "properties": {
@@ -798,5 +790,13 @@
       "Artist": "Lia"
     },
     "image": "ipfs://bafybeie4mlrkyu5lkrjmml4gnzvsoypb2oh4ifhr72ly6m3p3574k73j3y/99_2022_01_14_16_27_57.png"
+  },
+  {
+    "name": "drawing machine x4 #100",
+    "description": "The code behind the “drawing machine” series dates back to 2004, and was originally developed to create design elements for the cover of Portuguese musician Vitor Joaquim’s album “A Rose is a Rose”. For “drawing machine x4” LIA has further iterated the code, modifying it to such an extent that the visual outputs that it now produces bear scarce resemblance to those from the original version. The underlying mechanism, however, remains the same: elements are pulled around the canvas by invisible leads, tracing complex patterns that form in the interaction between each element’s internal and external motion.",
+    "properties": {
+      "Artist": "Lia"
+    },
+    "image": "ipfs://bafybeigvb3xizwveew5b6rotqoh2x4ywb2crs7joezfhsos45jjtfkkhmm/100_2022_01_14_16_28_55.png"
   }
 ]

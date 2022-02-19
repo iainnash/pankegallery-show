@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
 
 export const Footer = () => {
+  return <></>;
   return (
     <footer css={css`
       height: var(--footer-height);
