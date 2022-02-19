@@ -69,6 +69,10 @@ export default function GlobalStyles() {
           position: relative;
           min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
         }
+        
+        a {
+          color: #000;
+        }
 
         header,
         footer {

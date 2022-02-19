@@ -10,3 +10,17 @@ export const PageWrapper = styled.section`
     var(--space-sm)
     var(--space-lg);
 `
+
+export const PageButtons = styled.section`
+  button {
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    margin: 0;
+    font-size: 18px;
+  }
+  .pagination {
+    text-align: center;
+  }
+`
