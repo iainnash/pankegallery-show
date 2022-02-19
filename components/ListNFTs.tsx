@@ -6,7 +6,7 @@ import { PageButtons } from "../styles/components";
 const PAGE_SIZE = 20
 
 export const ListNFTs = ({ exhibit, contract, nfts, width, height }: any) => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   useEffect(() => {
     if (window.location.hash) {
       setCurrentPage(parseInt(window.location.hash.substring(1)));
