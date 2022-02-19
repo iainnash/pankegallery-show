@@ -88,7 +88,7 @@ const PurchaseSection = ({ price, contract, id }: any) => {
   );
 };
 
-export const ShowNFT = ({ id, width, height, nft, contract }: any) => (
+export const ShowNFT = ({ price, id, width, height, nft, contract }: any) => (
   <div>
     <div>
       <Image
@@ -107,6 +107,6 @@ export const ShowNFT = ({ id, width, height, nft, contract }: any) => (
     <p>{nft.name}</p>
     <p>{nft.description}</p>
 
-    <PurchaseSection contract={contract} id={id} />
+    <PurchaseSection price={price} contract={contract} id={id} />
   </div>
 );
