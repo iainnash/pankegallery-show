@@ -1,11 +1,11 @@
-import { css } from "@emotion/react";
 import { useNFT } from "@zoralabs/nft-hooks";
 import { useWeb3Wallet } from "@zoralabs/simple-wallet-provider";
 import Image from "next/image";
 import { useCallback, useState, useMemo } from "react";
 import { Contract } from "@ethersproject/contracts";
+import { formatEther } from "@ethersproject/units";
 
-const PurchaseSection = ({ contract, id }: any) => {
+const PurchaseSection = ({ price, contract, id }: any) => {
   const nft = useNFT(contract, id);
   const { library, active, account } = useWeb3Wallet();
   const ethersContract = useMemo(() => {
@@ -23,7 +23,7 @@ const PurchaseSection = ({ contract, id }: any) => {
       setError(undefined);
       setPurchasing(true);
       const response = await ethersContract.mint(id, {
-        value: "220000000000000000",
+        value: price,
       });
       setPurchasing(false);
       setTransactionId(response.hash);
@@ -64,7 +64,7 @@ const PurchaseSection = ({ contract, id }: any) => {
       )}
       {nft.error && !transactionId && (
         <>
-          <p>Purchase for 0.22 ETH</p>
+          <p>Purchase for {formatEther(price)} ETH</p>
 
           {active ? (
             <>

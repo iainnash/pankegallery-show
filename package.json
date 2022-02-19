@@ -14,6 +14,7 @@
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@ethersproject/contracts": "^5.5.0",
+    "@ethersproject/units": "^5.5.0",
     "@zoralabs/nft-components": "^1.0.2-pre",
     "@zoralabs/nft-hooks": "1",
     "@zoralabs/simple-wallet-provider": "^0.0.9",

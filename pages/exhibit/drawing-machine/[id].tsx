@@ -14,6 +14,7 @@ const DrawingMachinePiece = ({ id }: any) => {
         nft={nft}
         width={1920}
         height={1080}
+        price="220000000000000000"
       />
     </div>
   );

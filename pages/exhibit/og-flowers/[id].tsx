@@ -15,6 +15,7 @@ const OgFlowersPiece = ({ id }: any) => {
         nft={nft}
         width={1000}
         height={1000}
+        price="250000000000000000"
       />
     </div>
   );
