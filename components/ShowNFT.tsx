@@ -6,7 +6,7 @@ import { Contract } from "@ethersproject/contracts";
 import { formatEther } from "@ethersproject/units";
 
 const PurchaseSection = ({ price, contract, id }: any) => {
-  const nft = useNFT(contract, id);
+  const nft = useNFT(contract, id, {useBetaIndexer: true});
   const { library, active, account } = useWeb3Wallet();
   const ethersContract = useMemo(() => {
     return new Contract(
