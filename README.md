@@ -1,4 +1,4 @@
-The artists Lia und Cornelia Sollfrank current works are part current exhibition „NfTNeTArT. From Net Art to Art NFT“ – a cooperation between panke.gallery and OFFICE IMPART.
+The artists Lia und Cornelia Sollfrank are part current exhibition „NfTNeTArT. From Net Art to Art NFT” – a cooperation between panke.gallery and OFFICE IMPART.
 
 The exhibition NfTNeTArT. From Net Art to Art NFT brings together nine international artists that use algorithmic or generative systems as their artistic language. Their tools are digital codes and automatisms, which manifest themselves in a variety of unique and fascinating aesthetics. 
 
