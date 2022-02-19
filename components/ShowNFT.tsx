@@ -16,9 +16,11 @@ const PurchaseSection = ({ contract, id }: any) => {
     );
   }, [library]);
   const [purchasing, setPurchasing] = useState(false);
+  const [error, setError] = useState<any>();
   const [transactionId, setTransactionId] = useState<undefined | string>();
   const purchase = useCallback(async () => {
     try {
+      setError(undefined);
       setPurchasing(true);
       const response = await ethersContract.mint(id, {
         value: "220000000000000000",
@@ -27,6 +29,7 @@ const PurchaseSection = ({ contract, id }: any) => {
       setTransactionId(response.hash);
     } catch (e) {
       console.error(e);
+      setError(e);
       setPurchasing(false);
     }
   }, [library]);
@@ -37,7 +40,10 @@ const PurchaseSection = ({ contract, id }: any) => {
       {nft.data && (
         <>
           <p>Not for sale.</p>
-          <p>Owned by {nft.data.nft?.owner} {account === nft.data.nft?.owner ? '(you)' : ''}</p>
+          <p>
+            Owned by {nft.data.nft?.owner}{" "}
+            {account === nft.data.nft?.owner ? "(you)" : ""}
+          </p>
         </>
       )}
       {transactionId && (
@@ -61,13 +67,16 @@ const PurchaseSection = ({ contract, id }: any) => {
           <p>Purchase for 0.22 ETH</p>
 
           {active ? (
-            <button
-              onClick={purchase}
-              style={{ cursor: 'pointer', fontSize: "1.4em", padding: 6 }}
-              disabled={purchasing}
-            >
-              {purchasing ? "Purchasing" : "Purchase"}
-            </button>
+            <>
+              <button
+                onClick={purchase}
+                style={{ cursor: "pointer", fontSize: "1.4em", padding: 6 }}
+                disabled={purchasing}
+              >
+                {purchasing ? "Purchasing" : "Purchase"}
+              </button>
+              {error && <p><br />{error.error.message.toString()}</p>}
+            </>
           ) : (
             <p>
               Please connect your wallet in the upper right corner to continue.
