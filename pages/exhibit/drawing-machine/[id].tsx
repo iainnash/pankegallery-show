@@ -6,7 +6,7 @@ const DrawingMachinePiece = ({ id }: any) => {
   const nft = data[parseInt(id)];
   return (
     <div style={{ padding: "20px" }}>
-      <Head title={nft.name} ogImage={nft.image} />
+      <Head title={nft.name} ogImage={nft.image.replace('ipfs://', 'https://ipfs.io/ipfs/')} />
       {/* <Markdown markdown={drawingMachine} /> */}
       <ShowNFT
         contract={process.env.NEXT_PUBLIC_DRAWING_MACHINE_CONTRACT}
