@@ -12,4 +12,4 @@ The artist’s primary working material is code, which consists of LIA translati
 
 LIA’s works combine traditions of drawing and painting with the aesthetics of digital images and algorithms, characterised by a minimalist quality and by an affinity with conceptual art. She focuses on the translation of certain experienced principles into abstract forms, movements and colours in order to allow the viewer to explore the same on a subconscious level.
 
-[View more about Lia](https://www.liaworks.com/)
+[View more about LIA](https://www.liaworks.com/)
