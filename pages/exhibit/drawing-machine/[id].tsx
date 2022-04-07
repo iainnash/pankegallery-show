@@ -9,7 +9,7 @@ const DrawingMachinePiece = ({ id }: any) => {
       <Head title={nft.name} ogImage={nft.image.replace('ipfs://', 'https://ipfs.io/ipfs/')} />
       {/* <Markdown markdown={drawingMachine} /> */}
       <ShowNFT
-        contract={process.env.NEXT_PUBLIC_DRAWING_MACHINE_CONTRACT}
+        contract={process.env.NEXT_PUBLIC_DRAWING_MACHINE_CONTRACT_ADDRESS}
         id={id}
         nft={nft}
         width={1920}

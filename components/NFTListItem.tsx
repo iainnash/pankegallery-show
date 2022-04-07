@@ -9,6 +9,7 @@ export const NFTListItem = ({
   height,
   contract,
 }: any) => {
+  console.log({contract})
   const nftData = useNFT(contract, indx.toString(), { useBetaIndexer: true });
 
   return (
@@ -37,7 +38,7 @@ export const NFTListItem = ({
       >
         {nft.name}
         <div style={{ display: "inline-block", paddingLeft: "12px" }}>
-          {nftData?.data?.nft.owner ? " [sold]" : ""}
+          {nftData?.data?.nft.owner ? " [sold]" : " [purchase]"}
         </div>
       </div>
     </a>

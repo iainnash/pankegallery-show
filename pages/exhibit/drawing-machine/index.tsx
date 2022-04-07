@@ -11,7 +11,7 @@ const DrawingMachine = () => {
         width={960}
         height={540}
         exhibit="drawing-machine"
-        contract={process.env.NEXT_PUBLIC_DRAWING_MACHINE_CONTRACT}
+        contract={process.env.NEXT_PUBLIC_DRAWING_MACHINE_CONTRACT_ADDRESS}
         nfts={data}
       />
     </div>
