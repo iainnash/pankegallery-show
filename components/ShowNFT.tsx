@@ -22,6 +22,7 @@ const PurchaseSection = ({ price, contract, id }: any) => {
     try {
       setError(undefined);
       setPurchasing(true);
+      console.log({id});
       const response = await ethersContract.mint(id, {
         value: price,
       });
@@ -75,7 +76,7 @@ const PurchaseSection = ({ price, contract, id }: any) => {
               >
                 {purchasing ? "Purchasing" : "Purchase"}
               </button>
-              {error && <p><br />{error.error.message.toString()}</p>}
+              {error && <p><br />{error.error?.message?.toString()}</p>}
             </>
           ) : (
             <p>
