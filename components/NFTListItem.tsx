@@ -9,7 +9,7 @@ export const NFTListItem = ({
   height,
   contract,
 }: any) => {
-  const nftData = useNFT(contract, indx, { useBetaIndexer: true });
+  const nftData = useNFT(contract, indx.toString(), { useBetaIndexer: true });
 
   return (
     <a
