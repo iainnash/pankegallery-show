@@ -11,7 +11,7 @@ const OgFlowers = () => {
         width={400}
         height={400}
         exhibit="og-flowers"
-        contract={process.env.NEXT_PUBLIC_OG_FLOWERS_CONTRACT}
+        contract={process.env.NEXT_PUBLIC_OG_FLOWERS_CONTRACT_ADDRESS}
         nfts={data}
       />
     </div>
