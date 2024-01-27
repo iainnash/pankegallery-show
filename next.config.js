@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ['ipfs.io'],
+    domains: ['ipfs.io', 'cloudflare-ipfs.com'],
   },
   webpack: (config) => {
     config.module.rules.push({

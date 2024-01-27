@@ -1,56 +1,76 @@
-import { useNFT } from "@zoralabs/nft-hooks";
-import { useWeb3Wallet } from "@zoralabs/simple-wallet-provider";
 import Image from "next/image";
 import { useCallback, useState, useMemo } from "react";
-import { Contract } from "@ethersproject/contracts";
-import { formatEther } from "@ethersproject/units";
+import { formatEther, parseAbi } from "viem";
+import {
+  useAccount,
+  useContractReads,
+  usePrepareContractWrite,
+  useWalletClient,
+} from "wagmi";
+
+const abi = parseAbi([
+  "function mint(uint256 id) payable",
+  "function ownerOf(uint256 id) external view returns (address)",
+]);
 
 const PurchaseSection = ({ price, contract, id }: any) => {
-  const nft = useNFT(contract, id, {useBetaIndexer: true});
-  const { library, active, account } = useWeb3Wallet();
-  const ethersContract = useMemo(() => {
-    return new Contract(
-      contract,
-      ["function mint(uint256 id) payable external"],
-      library?.getSigner()
-    );
-  }, [library]);
+  const { data } = useContractReads({
+    contracts: [
+      {
+        abi: abi,
+        address: contract,
+        functionName: "ownerOf",
+        args: [BigInt(id)],
+      },
+    ],
+  });
+  const { config, error: mintError } = usePrepareContractWrite({
+    abi: abi,
+    address: contract,
+    functionName: "mint",
+    enabled: data?.[0].status === "failure",
+    args: [id],
+    value: price,
+  });
+  const account = useAccount();
+  const walletClient = useWalletClient();
+
+  const [error, setError] = useState<Error | undefined>(undefined);
   const [purchasing, setPurchasing] = useState(false);
-  const [error, setError] = useState<any>();
-  const [transactionId, setTransactionId] = useState<undefined | string>();
+  const [transactionId, setTransactionId] = useState<string>();
+
   const purchase = useCallback(async () => {
     try {
       setError(undefined);
       setPurchasing(true);
-      console.log({id});
-      const response = await ethersContract.mint(id, {
-        value: price,
-      });
+      console.log({ walletCD: walletClient.data, configR: config.request });
+      const writeResponse = await walletClient.data?.writeContract(
+        config.request
+      );
       setPurchasing(false);
-      setTransactionId(response.hash);
-    } catch (e) {
+      setTransactionId(writeResponse);
+    } catch (e: any) {
       console.error(e);
       setError(e);
       setPurchasing(false);
     }
-  }, [library]);
+  }, [setError, setPurchasing, setTransactionId, walletClient, config.request]);
 
-  // console.log(nft)
   return (
     <div>
-      {nft.data && (
+      {!data?.[0].error && (
         <>
-          <p>Already sold on primary.</p>
-          <p>
-            Owned by {nft.data.nft?.owner}{" "}
-            {account === nft.data.nft?.owner ? "(you)" : ""}
-          </p>
+          <div>Already sold on primary.</div>
+          <div>
+            Owned by {data?.[0].result}{" "}
+            {account.address === data?.[0].result ? "(you)" : ""}
+          </div>
         </>
       )}
       {transactionId && (
         <>
-          <p>Purchase transaction submitted.</p>
-          <p>
+          <div>Purchase transaction submitted.</div>
+          <div>
             <a
               href={`https://${
                 process.env.NEXT_PUBLIC_NETWORK_ID === "4" ? "rinkeby." : ""
@@ -58,30 +78,44 @@ const PurchaseSection = ({ price, contract, id }: any) => {
               target="_blank"
               rel="noreferrer"
             >
-              View on etherscan
+              View on Etherscan
             </a>
-          </p>
+          </div>
         </>
       )}
-      {nft.error && !transactionId && (
+      {data?.[0].error && !transactionId && (
         <>
-          <p>Purchase for {formatEther(price)} ETH</p>
+          <div>Purchase for {formatEther(price)} ETH</div>
+          <br />
 
-          {active ? (
+          {account.address ? (
             <>
-              <button
-                onClick={purchase}
-                style={{ cursor: "pointer", fontSize: "1.4em", padding: 6 }}
-                disabled={purchasing}
-              >
-                {purchasing ? "Purchasing" : "Purchase"}
-              </button>
-              {error && <p><br />{error.error?.message?.toString()}</p>}
+              {!mintError && (
+                <button
+                  onClick={purchase}
+                  style={{ cursor: "pointer", fontSize: "1.4em", padding: 6 }}
+                  disabled={purchasing}
+                >
+                  {purchasing ? "Purchasing" : "Purchase"}
+                </button>
+              )}
+              {mintError && (
+                <div>
+                  <br />
+                  Error: {(mintError as any).shortMessage}
+                </div>
+              )}
+              {error && (
+                <div>
+                  <br />
+                  Error: {error.message?.toString()}
+                </div>
+              )}
             </>
           ) : (
-            <p>
+            <div>
               Please connect your wallet in the upper right corner to continue.
-            </p>
+            </div>
           )}
         </>
       )}
@@ -101,13 +135,15 @@ export const ShowNFT = ({ price, id, width, height, nft, contract }: any) => (
         //     max-width: 100%;
         //   ` as any
         // }
-        src={nft.image.replace("ipfs://", "https://ipfs.io/ipfs/")}
+        src={nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")}
         alt={nft.name}
       />
     </div>
-    <p>{nft.name}</p>
-    <p>{nft.description}</p>
-
+    <div>&nbsp;</div>
+    <div><strong>{nft.name}</strong></div>
+    <div>&nbsp;</div>
+    <div>{nft.description}</div>
+    <div>&nbsp;</div>
     <PurchaseSection price={price} contract={contract} id={id} />
   </div>
 );

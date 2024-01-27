@@ -1,9 +1,9 @@
 import { css } from "@emotion/react";
-import { useWalletButton } from "@zoralabs/simple-wallet-provider";
 import { NavLink } from "./NavLink";
+import { ConnectKitButton } from "connectkit";
 
 export const Header = () => {
-  const {buttonAction, actionText} = useWalletButton();
+  // const {buttonAction, actionText} = useWalletButton();
 
   return (
     <>
@@ -18,16 +18,17 @@ export const Header = () => {
         `}
       >
         <NavLink passHref href="/">
-          <a>About</a>
+          <>About</>
         </NavLink>
         <NavLink passHref href="/exhibit/drawing-machine">
-          <a>drawing machine x4</a>
+          <>drawing machine x4</>
         </NavLink>
         <NavLink passHref href="/exhibit/og-flowers">
-          <a>OG flowers</a>
+          <>OG flowers</>
         </NavLink>
 
-        <a href="#" onClick={buttonAction}>{actionText}</a>
+        <ConnectKitButton />
+        {/* <a href="#" onClick={buttonAction}>{actionText}</a> */}
       </header>
     </>
   );

@@ -1,7 +1,7 @@
-import { useNFT } from "@zoralabs/nft-hooks";
 import Image from "next/image";
 
 export const NFTListItem = ({
+  isAvailable,
   exhibit,
   indx,
   nft,
@@ -9,9 +9,6 @@ export const NFTListItem = ({
   height,
   contract,
 }: any) => {
-  console.log({contract})
-  const nftData = useNFT(contract, indx.toString(), { useBetaIndexer: true });
-
   return (
     <a
       href={`/exhibit/${exhibit}/${indx}`}
@@ -38,7 +35,11 @@ export const NFTListItem = ({
       >
         {nft.name}
         <div style={{ display: "inline-block", paddingLeft: "12px" }}>
-          {nftData?.data?.nft.owner ? " [sold]" : " [purchase]"}
+          {isAvailable === true
+            ? " [purchase]"
+            : isAvailable === undefined
+            ? ""
+            : " [sold]"}
         </div>
       </div>
     </a>

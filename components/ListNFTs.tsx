@@ -1,9 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Pagination from "react-paginating";
 import { PageButtons } from "../styles/components";
 import { NFTListItem } from "./NFTListItem";
+import { useContractReads } from "wagmi";
+import { parseAbi } from "viem";
 
 const PAGE_SIZE = 20;
+
+const abi = parseAbi([
+  "function ownerOf(uint256 id) external view returns (address)",
+]);
 
 export const ListNFTs = ({ exhibit, contract, nfts, width, height }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,13 +26,42 @@ export const ListNFTs = ({ exhibit, contract, nfts, width, height }: any) => {
       }
     }
   };
-  const shownNFTs = nfts
-    .map((nft: any, indx: number) => ({ nft, indx }))
-    .slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+  const shownNFTs = useMemo(
+    () =>
+      nfts
+        .map((nft: any, indx: number) => ({ nft, indx }))
+        .slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE),
+    [nfts, currentPage, PAGE_SIZE]
+  );
+
+  const contracts = useMemo(
+    () =>
+      shownNFTs.map(({ indx }: { indx: number }) => ({
+        abi,
+        functionName: "ownerOf",
+        address: contract,
+        args: [BigInt(indx)],
+      })),
+    [shownNFTs]
+  );
+
+  const { data: soldStatus } = useContractReads({
+    contracts,
+  });
+
   return (
     <PageButtons>
-      {shownNFTs.map(({ nft, indx }: any) => (
-        <NFTListItem key={indx} contract={contract} exhibit={exhibit} indx={indx} nft={nft} width={width} height={height} />
+      {shownNFTs.map(({ nft, indx }: any, listIndx: number) => (
+        <NFTListItem
+          key={indx}
+          contract={contract}
+          exhibit={exhibit}
+          isAvailable={soldStatus?.[listIndx]?.status === "failure"}
+          indx={indx}
+          nft={nft}
+          width={width}
+          height={height}
+        />
       ))}
 
       <Pagination
@@ -61,7 +96,6 @@ export const ListNFTs = ({ exhibit, contract, nfts, width, height }: any) => {
 
             {pages.map((page) => {
               let activePage = undefined;
-              console.log({ page, currentPage });
               if (currentPage === page) {
                 activePage = { backgroundColor: "#fdce09" };
               }
