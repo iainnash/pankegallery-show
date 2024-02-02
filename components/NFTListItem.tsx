@@ -24,6 +24,7 @@ export const NFTListItem = ({
       <Image
         width={width}
         height={height}
+        style={{width: '100%', objectFit: 'contain'}}
         src={nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")}
         alt={nft.name}
       />

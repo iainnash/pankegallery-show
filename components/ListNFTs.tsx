@@ -51,18 +51,20 @@ export const ListNFTs = ({ exhibit, contract, nfts, width, height }: any) => {
 
   return (
     <PageButtons>
-      {shownNFTs.map(({ nft, indx }: any, listIndx: number) => (
-        <NFTListItem
-          key={indx}
-          contract={contract}
-          exhibit={exhibit}
-          isAvailable={soldStatus?.[listIndx]?.status === "failure"}
-          indx={indx}
-          nft={nft}
-          width={width}
-          height={height}
-        />
-      ))}
+      <div style={exhibit.includes('flowers') ? {} : {display: 'flex', flexDirection: 'column'}}>
+        {shownNFTs.map(({ nft, indx }: any, listIndx: number) => (
+          <NFTListItem
+            key={indx}
+            contract={contract}
+            exhibit={exhibit}
+            isAvailable={soldStatus?.[listIndx]?.status === "failure"}
+            indx={indx}
+            nft={nft}
+            width={width}
+            height={height}
+          />
+        ))}
+      </div>
 
       <Pagination
         className="pagination"

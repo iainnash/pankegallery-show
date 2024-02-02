@@ -9,4 +9,6 @@ export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || ''
 export const DEFAULT_OG_CARD = `${BASE_URL}/meta-content/social-card.jpg`
 export const FAVICON = `${BASE_URL}/meta-content/social-card.jpg`
 
+export const WC_CLIENT_ID = process.env.NEXT_PUBLIC_WC_PROJECT_ID!;
+
 export const RPC_URL: string | undefined = process.env.NEXT_PUBLIC_RPC_URL;

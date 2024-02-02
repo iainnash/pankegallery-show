@@ -13,8 +13,9 @@
   "dependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
+    "@tanstack/react-query": "^5.18.1",
     "classnames": "^2.3.1",
-    "connectkit": "^1.6.0",
+    "connectkit": "^1.7.0-demo",
     "graphql-tag": "^2.12.6",
     "next": "^14.1.0",
     "prop-types": "^15.8.1",
@@ -25,8 +26,8 @@
     "remark-react": "^8.0.0",
     "swr": "^2.2.4",
     "unified": "^9.2.1",
-    "viem": "1.x",
-    "wagmi": "1.x"
+    "viem": "^2.7.1",
+    "wagmi": "^2.5.5"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.3.0",
