@@ -83,7 +83,7 @@ export const ListNFTs = ({ exhibit, contract, nfts, width, height }: any) => {
           totalPages,
           getPageItemProps,
         }) => (
-          <div>
+          <div key={currentPage}>
             {hasPreviousPage && (
               <button
                 {...getPageItemProps({

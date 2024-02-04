@@ -16,6 +16,7 @@ const networkId = parseInt(NETWORK_ID as string, 10);
 
 const config = createConfig(
   getDefaultConfig({
+    syncConnectedChain: false,
     transports: {
       [mainnet.id]: fallback([
         http(RPC_URL),
