@@ -1,11 +1,14 @@
 import Image from "next/image";
 import { useCallback, useState, useMemo } from "react";
 import { formatEther, parseAbi } from "viem";
+import { mainnet } from "viem/chains";
 import {
   useAccount,
+  useChainId,
   useContractReads,
-  usePrepareContractWrite,
+  useSwitchChain,
   useWalletClient,
+  useWriteContract,
 } from "wagmi";
 
 const abi = parseAbi([
@@ -24,37 +27,46 @@ const PurchaseSection = ({ price, contract, id }: any) => {
       },
     ],
   });
-  const { config, error: mintError } = usePrepareContractWrite({
-    abi: abi,
-    address: contract,
-    functionName: "mint",
-    enabled: data?.[0].status === "failure",
-    args: [id],
-    value: price,
-  });
+  const {
+    data: hash,
+    error: mintError,
+    isPending: purchasing,
+    writeContract,
+  } = useWriteContract();
   const account = useAccount();
   const walletClient = useWalletClient();
 
   const [error, setError] = useState<Error | undefined>(undefined);
-  const [purchasing, setPurchasing] = useState(false);
-  const [transactionId, setTransactionId] = useState<string>();
 
   const purchase = useCallback(async () => {
     try {
       setError(undefined);
-      setPurchasing(true);
-      console.log({ walletCD: walletClient.data, configR: config.request });
-      const writeResponse = await walletClient.data?.writeContract(
-        config.request
-      );
-      setPurchasing(false);
-      setTransactionId(writeResponse);
+      writeContract({
+        chainId: mainnet.id,
+        abi: abi,
+        address: contract,
+        functionName: "mint",
+        args: [id],
+        value: price,
+      });
     } catch (e: any) {
       console.error(e);
       setError(e);
-      setPurchasing(false);
     }
-  }, [setError, setPurchasing, setTransactionId, walletClient, config.request]);
+  }, [setError, writeContract, walletClient]);
+
+  const chainId = useChainId();
+  const { switchChain } = useSwitchChain();
+
+  if (chainId !== mainnet.id) {
+    return (
+      <div>
+        <button onClick={() => switchChain({ chainId: mainnet.id })}>
+          Switch to Mainnet
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -67,14 +79,14 @@ const PurchaseSection = ({ price, contract, id }: any) => {
           </div>
         </>
       )}
-      {transactionId && (
+      {hash && (
         <>
           <div>Purchase transaction submitted.</div>
           <div>
             <a
               href={`https://${
                 process.env.NEXT_PUBLIC_NETWORK_ID === "4" ? "rinkeby." : ""
-              }etherscan.io/tx/${transactionId}`}
+              }etherscan.io/tx/${hash}`}
               target="_blank"
               rel="noreferrer"
             >
@@ -83,7 +95,7 @@ const PurchaseSection = ({ price, contract, id }: any) => {
           </div>
         </>
       )}
-      {data?.[0].error && !transactionId && (
+      {data?.[0].error && !hash && (
         <>
           <div>Purchase for {formatEther(price)} ETH</div>
           <br />
@@ -140,7 +152,9 @@ export const ShowNFT = ({ price, id, width, height, nft, contract }: any) => (
       />
     </div>
     <div>&nbsp;</div>
-    <div><strong>{nft.name}</strong></div>
+    <div>
+      <strong>{nft.name}</strong>
+    </div>
     <div>&nbsp;</div>
     <div>{nft.description}</div>
     <div>&nbsp;</div>

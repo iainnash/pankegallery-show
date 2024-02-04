@@ -8,7 +8,7 @@ import { Footer } from "../components/Footer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider, createConfig, fallback, http } from "wagmi";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
-import { mainnet } from "viem/chains";
+import { mainnet, sepolia } from "viem/chains";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +23,7 @@ const config = createConfig(
       ]),
     },
 
-    chains: [mainnet],
+    chains: [mainnet, sepolia],
 
     walletConnectProjectId: WC_CLIENT_ID,
 
