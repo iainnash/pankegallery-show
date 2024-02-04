@@ -56,14 +56,15 @@ const PurchaseSection = ({ price, contract, id }: any) => {
   }, [setError, writeContract, walletClient]);
 
   const chainId = useChainId();
-  const { switchChain } = useSwitchChain();
+  // const { switchChain } = useSwitchChain();
 
   if (chainId !== mainnet.id) {
     return (
       <div>
-        <button onClick={() => switchChain({ chainId: mainnet.id })}>
+        Please switch your wallet to mainnet.
+        {/* <button onClick={() => switchChain({ chainId: mainnet.id })}>
           Switch to Mainnet
-        </button>
+        </button> */}
       </div>
     );
   }
