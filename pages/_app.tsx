@@ -7,35 +7,24 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider, createConfig, fallback, http } from "wagmi";
-import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 import { mainnet, sepolia } from "viem/chains";
+import {
+  RainbowKitProvider,
+  getDefaultConfig,
+  getDefaultWallets,
+  lightTheme,
+} from "@rainbow-me/rainbowkit";
+import "@rainbow-me/rainbowkit/styles.css";
 
 const queryClient = new QueryClient();
 
 const networkId = parseInt(NETWORK_ID as string, 10);
 
-const config = createConfig(
-  getDefaultConfig({
-    syncConnectedChain: false,
-    transports: {
-      [mainnet.id]: fallback([
-        http(RPC_URL),
-        http(), // public fallback
-      ]),
-    },
-
-    chains: [mainnet, sepolia],
-
-    walletConnectProjectId: WC_CLIENT_ID,
-
-    // Required
-    appName: "NfTNEtaRT Office Impart",
-
-    // Optional
-    appDescription: "Office Impart NfTNEtaRT Show",
-    appUrl: "https://nftnetart.officeimpart.com/", // your app's url
-  })
-);
+const config = getDefaultConfig({
+  appName: "NfTNEtaRT Office Impart",
+  chains: [mainnet],
+  projectId: WC_CLIENT_ID,
+});
 
 export default function CreateAuctionHouseApp({
   Component,
@@ -47,11 +36,10 @@ export default function CreateAuctionHouseApp({
 
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
-          <ConnectKitProvider
-            customTheme={{
-              "--ck-connectbutton-font-size": "18px",
-              "--ck-font-family": "Helvetica",
-            }}
+          <RainbowKitProvider
+            theme={lightTheme({
+              accentColor: "#222",
+            })}
           >
             <>
               <Header />
@@ -61,7 +49,7 @@ export default function CreateAuctionHouseApp({
 
               <Footer />
             </>
-          </ConnectKitProvider>
+          </RainbowKitProvider>
         </QueryClientProvider>
       </WagmiProvider>
     </>

@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import { NavLink } from "./NavLink";
-import { ConnectKitButton } from "connectkit";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export const Header = () => {
   // const {buttonAction, actionText} = useWalletButton();
@@ -27,7 +27,7 @@ export const Header = () => {
           <>OG flowers</>
         </NavLink>
 
-        <ConnectKitButton />
+        <ConnectButton />
         {/* <a href="#" onClick={buttonAction}>{actionText}</a> */}
       </header>
     </>

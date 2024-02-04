@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useState } from "react";
 import { formatEther, parseAbi } from "viem";
 import { mainnet } from "viem/chains";
