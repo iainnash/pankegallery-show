@@ -12,7 +12,7 @@ const DrawingMachinePiece = ({ id }: any) => {
         contract={process.env.NEXT_PUBLIC_DRAWING_MACHINE_CONTRACT_ADDRESS}
         id={id}
         nft={nft}
-        width={1920}
+        width={2040}
         height={1080}
         price="220000000000000000"
       />

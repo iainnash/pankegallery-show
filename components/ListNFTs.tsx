@@ -45,13 +45,36 @@ export const ListNFTs = ({ exhibit, contract, nfts, width, height }: any) => {
     [shownNFTs]
   );
 
+  useEffect(() => {
+    const listener = window.addEventListener("hashchange", () => {
+      let bottom = document
+        .getElementById("article")
+        ?.getBoundingClientRect().bottom;
+      if (bottom) {
+        bottom += window.scrollY - 140;
+      } else {
+        bottom = 300;
+      }
+      window.scrollTo(0, bottom);
+    });
+    return () => {
+      window.removeEventListener("hashchange", listener as any);
+    };
+  }, []);
+
   const { data: soldStatus } = useContractReads({
     contracts,
   });
 
   return (
     <PageButtons>
-      <div style={exhibit.includes('flowers') ? {} : {display: 'flex', flexDirection: 'column'}}>
+      <div
+        style={
+          exhibit.includes("flowers")
+            ? {}
+            : { display: "flex", flexDirection: "column" }
+        }
+      >
         {shownNFTs.map(({ nft, indx }: any, listIndx: number) => (
           <NFTListItem
             key={indx}

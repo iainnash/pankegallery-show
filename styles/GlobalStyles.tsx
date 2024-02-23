@@ -63,6 +63,10 @@ export default function GlobalStyles() {
           font-family: var(--font-a)!important;
         }
 
+        html {
+          scroll-behavior: smooth;
+        }
+
         main {
           width: 100%;
           overflow-x: hidden;
