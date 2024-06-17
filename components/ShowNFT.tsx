@@ -6,7 +6,9 @@ const PurchaseSection = dynamic(() => import("./PurchaseSection"), {
   ssr: false,
 });
 
-export const ShowNFT = ({ price, id, width, height, nft, contract }: any) => (
+export const ShowNFT = ({ price, id, width, height, nft, contract }: any) => {
+  const [_, imageCID, imagePath] = nft.image.match(/ipfs:\/\/([^\/]+)(\/.+)?/);
+  return (
   <div>
     <div>
       {/* <Image
@@ -22,7 +24,7 @@ export const ShowNFT = ({ price, id, width, height, nft, contract }: any) => (
         alt={nft.name}
       /> */}
       <img
-        src={nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")}
+        src={`https://${imageCID}.ipfs.nftstorage.link/${imagePath}`}
         css={
           css`
             objectfit: contain;
@@ -40,4 +42,5 @@ export const ShowNFT = ({ price, id, width, height, nft, contract }: any) => (
     <div>&nbsp;</div>
     <PurchaseSection price={price} contract={contract} id={id} />
   </div>
-);
+  );
+}
