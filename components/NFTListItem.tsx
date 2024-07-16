@@ -21,11 +21,11 @@ export const NFTListItem = ({
         textDecoration: "none",
       }}
     >
-      <Image
+      <img
         width={width}
         height={height}
         style={{width: '100%', objectFit: 'contain'}}
-        src={nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")}
+        src={`https://wsrv.nl/?w={width}&url=${nft.image.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/")}`}
         alt={nft.name}
       />
       <div
