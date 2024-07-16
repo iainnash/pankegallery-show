@@ -1,0 +1,10 @@
+{
+  "images": {
+    "sizes": [1920],
+    "remotePatterns": [{
+      "protocol": "https",
+      "hostname": "cloudflare-ipfs.com",
+      "path": "/ipfs/**"
+    }]
+  }
+}
