@@ -4,7 +4,8 @@
     "remotePatterns": [{
       "protocol": "https",
       "hostname": "cloudflare-ipfs.com",
-      "path": "/ipfs/**"
+      "pathname": "/ipfs/**",
+      "port": ""
     }]
   }
 }
