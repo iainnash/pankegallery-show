@@ -20,9 +20,6 @@ export const Header = () => {
         <NavLink passHref href="/">
           <>About</>
         </NavLink>
-        <NavLink passHref href="/exhibit/drawing-machine">
-          <>drawing machine x4</>
-        </NavLink>
         <NavLink passHref href="/exhibit/og-flowers">
           <>OG flowers</>
         </NavLink>
