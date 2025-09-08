@@ -6,7 +6,8 @@ import GlobalStyles from "../styles/GlobalStyles";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { WagmiProvider, createConfig, fallback, http } from "wagmi";
+import { WagmiProvider } from "wagmi";
+import { http } from "viem";
 import { mainnet, sepolia } from "viem/chains";
 import {
   RainbowKitProvider,
@@ -24,6 +25,9 @@ const config = getDefaultConfig({
   appName: "NfTNEtaRT Office Impart",
   chains: [mainnet],
   projectId: WC_CLIENT_ID,
+  transports: RPC_URL
+    ? { [mainnet.id]: http(RPC_URL) }
+    : { [mainnet.id]: http() },
 });
 
 export default function CreateAuctionHouseApp({

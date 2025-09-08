@@ -8,7 +8,7 @@ const OgFlowersPiece = ({ id }: any) => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <Head title={nft.name} ogImage={`https://wsrv.nl/?w=512&url=${nft.image.replace('ipfs://', process.env.NEXT_PUBLIC_IPFS_HOST)}`} />
+      <Head title={nft.name} ogImage={`https://wsrv.nl/?w=512&url=${nft.image.replace('ipfs://', process.env.NEXT_PUBLIC_IPFS_HOST || 'https://cloudflare-ipfs.com/ipfs/')}`} />
       <ShowNFT
         contract={process.env.NEXT_PUBLIC_OG_FLOWERS_CONTRACT_ADDRESS}
         id={id}

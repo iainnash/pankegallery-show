@@ -6,7 +6,7 @@ const DrawingMachinePiece = ({ id }: any) => {
   const nft = data[parseInt(id)];
   return (
     <div style={{ padding: "20px" }}>
-      <Head title={nft.name} ogImage={`https://wsrv.nl/?w=512&url=${nft.image.replace('ipfs://', process.env.NEXT_PUBLIC_IPFS_HOST)}`} />
+      <Head title={nft.name} ogImage={`https://wsrv.nl/?w=512&url=${nft.image.replace('ipfs://', process.env.NEXT_PUBLIC_IPFS_HOST || 'https://cloudflare-ipfs.com/ipfs/')}`} />
       {/* <Markdown markdown={drawingMachine} /> */}
       <ShowNFT
         contract={process.env.NEXT_PUBLIC_DRAWING_MACHINE_CONTRACT_ADDRESS}

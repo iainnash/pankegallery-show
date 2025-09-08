@@ -25,7 +25,7 @@ export const NFTListItem = ({
         width={width}
         height={height}
         style={{width: '100%', objectFit: 'contain'}}
-        src={`https://wsrv.nl/?w=${width}&url=${nft.image.replace("ipfs://", process.env.NEXT_PUBLIC_IPFS_HOST)}`}
+        src={`https://wsrv.nl/?w=${width}&url=${nft.image.replace("ipfs://", process.env.NEXT_PUBLIC_IPFS_HOST || 'https://cloudflare-ipfs.com/ipfs/')}`}
         alt={nft.name}
       />
       <div
