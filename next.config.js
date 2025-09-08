@@ -1,4 +1,7 @@
 module.exports = {
+  compiler: {
+    emotion: true,
+  },
   images: {
     domains: ['cloudflare-ipfs.com'],
     remotePatterns: [{hostname: 'cloudflare-ipfs.com'}]
