@@ -1126,6 +1126,11 @@
   resolved "https://registry.yarnpkg.com/@vanilla-extract/sprinkles/-/sprinkles-1.6.4.tgz#adf34734bd480bbcc835eec94f90869a81f35af5"
   integrity sha512-lW3MuIcdIeHKX81DzhTnw68YJdL1ial05exiuvTLJMdHXQLKcVB93AncLPajMM6mUhaVVx5ALZzNHMTrq/U9Hg==
 
+"@vanilla-extract/sprinkles@^1.6.5":
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@vanilla-extract/sprinkles/-/sprinkles-1.6.5.tgz#71f8cf21ca47cf75b2fc74e63c1854a8ef4e4a82"
+  integrity sha512-HOYidLONR/SeGk8NBAeI64I4gYdsMX9vJmniL13ZcLVwawyK0s2GUENEAcGA+GYLIoeyQB61UqmhqPodJry7zA==
+
 "@wagmi/connectors@5.9.9":
   version "5.9.9"
   resolved "https://registry.yarnpkg.com/@wagmi/connectors/-/connectors-5.9.9.tgz#e7a2c41a90dadad450f8145a29a69332b9376c14"
