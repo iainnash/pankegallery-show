@@ -1,5 +1,9 @@
 import Head from "../../../components/head";
-import { ShowNFT } from "../../../components/ShowNFT";
+import dynamic from "next/dynamic";
+const ShowNFT = dynamic(
+  () => import("../../../components/ShowNFT").then((m) => m.ShowNFT),
+  { ssr: false }
+);
 import data from "../../../data/og-flowers.json";
 
 const OgFlowersPiece = ({ id }: any) => {
