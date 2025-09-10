@@ -1,10 +1,7 @@
 import Head from "../../../components/head";
-import dynamic from "next/dynamic";
-const ShowNFT = dynamic(
-  () => import("../../../components/ShowNFT").then((m) => m.ShowNFT),
-  { ssr: false }
-);
 import data from "../../../data/og-flowers.json";
+import { ShowNFT } from "../../../components/ShowNFT";
+
 
 const OgFlowersPiece = ({ id }: any) => {
   const nft = data[parseInt(id)];
@@ -25,9 +22,14 @@ const OgFlowersPiece = ({ id }: any) => {
   );
 };
 
-export async function getServerSideProps({ params }: any) {
+export async function getStaticPaths() {
+  const paths = data.map((_: any, idx: number) => ({ params: { id: String(idx) } }));
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }: any) {
   return {
-    props: { id: params.id }, // will be passed to the page component as props
+    props: { id: params.id },
   };
 }
 

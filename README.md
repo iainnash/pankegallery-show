@@ -6,5 +6,5 @@ In the confrontations of the just very recent technologies and blockchain develo
 
 The exhibition features works ranging from early to very current works, developed specifically for the exhibition and therefore showcasing a diverse range of generative art in the context of Net Art’s history. The exhibition will create a dialogical environment in which classic network phenomena and cutting-edge technologies will interact.
 
-### Artist of the exhibition:
-[Kim Asendorf](https://kimasendorf.com/), [LaTurbo Avedon](https://turboavedon.com/), [Sarah Friend](https://isthisa.com/), [LIA, ](https://www.liaworks.com/) [Jonas Lund](https://jonaslund.com/), [Rhea Myers](https://rhea.art/), [Rafaël Rozendaal](https://www.newrafael.com/), [Cornelia Sollfrank](https://net.art-generator.com/), [Harm van den Dorpel](https://harm.work/)
+#### Artist of the exhibition:
+[Kim Asendorf](https://kimasendorf.com/), [LaTurbo Avedon](https://turboavedon.com/), [Sarah Friend](https://isthisa.com/), [LIA](https://www.liaworks.com/), [Jonas Lund](https://jonaslund.com/), [Rhea Myers](https://rhea.art/), [Rafaël Rozendaal](https://www.newrafael.com/), [Cornelia Sollfrank](https://net.art-generator.com/), [Harm van den Dorpel](https://harm.work/)
